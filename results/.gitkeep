@@ -1,0 +1,2 @@
+# Evaluation outputs are saved here after running src/evaluate.py
+# Files: confusion_matrix.png, metrics_report.txt

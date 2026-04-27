@@ -1,0 +1,39 @@
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ────────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env
+
+# ── Dataset (large CSV files — download manually from Kaggle) ──────────────────
+data/Fake.csv
+data/True.csv
+
+# ── Saved model artifacts ───────────────────────────────────────────────────────
+models/*.joblib
+
+# ── Test & coverage outputs ─────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# ── IDE & OS ────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# ── Jupyter ──────────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
