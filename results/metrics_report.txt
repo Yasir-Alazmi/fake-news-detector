@@ -1,0 +1,16 @@
+=======================================================
+  Fake News Detector — Evaluation Report
+=======================================================
+
+Accuracy : 0.6667  (66.67%)
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+        REAL       0.50      0.50      0.50         2
+        FAKE       0.75      0.75      0.75         4
+
+    accuracy                           0.67         6
+   macro avg       0.62      0.62      0.62         6
+weighted avg       0.67      0.67      0.67         6

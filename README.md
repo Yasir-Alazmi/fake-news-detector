@@ -1,8 +1,14 @@
 # 🕵️ Fake News Detector
 
-A production-quality machine learning pipeline that classifies news articles as **REAL** or **FAKE** using TF-IDF vectorization and a Passive Aggressive Classifier.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://python.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4%2B-orange)](https://scikit-learn.org)
+[![CI](https://github.com/Yasir-Alazmi/fake-news-detector/actions/workflows/ci.yml/badge.svg)](https://github.com/Yasir-Alazmi/fake-news-detector/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/Tests-32%20passed-brightgreen)](tests/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **Accuracy: ~99% on the Kaggle Fake-and-Real-News dataset**
+A production-quality machine learning pipeline that classifies news articles as **REAL** or **FAKE** using TF-IDF vectorization, a Passive Aggressive Classifier, and feature explainability.
+
+> **Accuracy: ~99% on the Kaggle Fake-and-Real-News dataset | Out-of-the-box demo mode enabled with built-in sample datasets**
 
 ---
 

@@ -70,16 +70,27 @@ def load_raw_data(data_dir: str) -> pd.DataFrame:
     fake_path = os.path.join(data_dir, "Fake.csv")
     true_path = os.path.join(data_dir, "True.csv")
 
-    if not os.path.exists(fake_path):
-        raise FileNotFoundError(f"Missing dataset file: {fake_path}")
-    if not os.path.exists(true_path):
-        raise FileNotFoundError(f"Missing dataset file: {true_path}")
+    if not os.path.exists(fake_path) or not os.path.exists(true_path):
+        sample_fake = os.path.join(data_dir, "sample_Fake.csv")
+        sample_true = os.path.join(data_dir, "sample_True.csv")
+        if os.path.exists(sample_fake) and os.path.exists(sample_true):
+            logger.warning(
+                "Full dataset (Fake.csv / True.csv) not found in '%s'. "
+                "Running in DEMO mode using built-in sample datasets.",
+                data_dir,
+            )
+            fake_path = sample_fake
+            true_path = sample_true
+        else:
+            raise FileNotFoundError(
+                f"Missing dataset files in {data_dir}. Expected Fake.csv / True.csv or sample_Fake.csv / sample_True.csv."
+            )
 
-    logger.info("Loading Fake.csv …")
+    logger.info("Loading Fake dataset from %s ...", os.path.basename(fake_path))
     fake_df = pd.read_csv(fake_path)
     fake_df["label"] = LABEL_FAKE
 
-    logger.info("Loading True.csv …")
+    logger.info("Loading True dataset from %s ...", os.path.basename(true_path))
     true_df = pd.read_csv(true_path)
     true_df["label"] = LABEL_REAL
 

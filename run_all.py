@@ -16,7 +16,11 @@ Usage:
 
 import argparse
 import logging
+import sys
 import time
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 from src.preprocess import prepare_data
 from src.train import train_model, save_artifacts
@@ -38,9 +42,9 @@ DEMO_HEADLINES = [
 
 def _banner(text: str) -> None:
     width = 58
-    print("\n" + "═" * width)
+    print("\n" + "=" * width)
     print(f"  {text}")
-    print("═" * width)
+    print("=" * width)
 
 
 def run_pipeline(data_dir: str, model_dir: str, output_dir: str) -> None:
