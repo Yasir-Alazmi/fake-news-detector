@@ -1,14 +1,14 @@
 # 🕵️ Fake News Detector
 
+[![Tests](https://img.shields.io/badge/Tests-32%20passed-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://python.org)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4%2B-orange)](https://scikit-learn.org)
 [![CI](https://github.com/Yasir-Alazmi/fake-news-detector/actions/workflows/ci.yml/badge.svg)](https://github.com/Yasir-Alazmi/fake-news-detector/actions/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/Tests-32%20passed-brightgreen)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A production-quality machine learning pipeline that classifies news articles as **REAL** or **FAKE** using TF-IDF vectorization, a Passive Aggressive Classifier, and feature explainability.
+A small learning project: a TF-IDF + Passive Aggressive text classifier that separates news articles labelled **REAL** from articles labelled **FAKE**, with feature explainability. It learns the *writing style of the source*, not whether a claim is true (see Results).
 
-> **Accuracy: ~99% on the Kaggle Fake-and-Real-News dataset | Out-of-the-box demo mode enabled with built-in sample datasets**
+> **Honest status:** the repository ships 198 articles (100 real from a wire service, 98 fake). Cross-validated accuracy on them is about 0.89. An earlier "~99%" claim was for a different, larger dataset and is not reproducible from this repository.
 
 ---
 
@@ -146,12 +146,16 @@ pytest tests/ -v --cov=src --cov-report=term-missing
 
 ## 📊 Results
 
-| Metric | Score |
-|---|---|
-| Accuracy | ~99% |
-| FAKE Precision | ~99% |
-| FAKE Recall | ~99% |
-| REAL F1-Score | ~99% |
+Repeated stratified 5-fold cross-validation over all 198 articles (`python scripts/evaluate_cv.py`, full output in [`results/cv_report.md`](results/cv_report.md)):
+
+| Input | Mean accuracy | Range over 5 shuffles |
+|---|---|---|
+| raw text | 0.893 | 0.884 to 0.904 |
+| "(Reuters)" tag removed | 0.886 | 0.864 to 0.899 |
+
+**What the model learns.** The most REAL-leaning words are `reuters, minister, tuesday, moscow, washington`; the most FAKE-leaning are `mr, right, like, com, image`. Removing the "(Reuters)" tag barely lowers accuracy because datelines and city names remain, so the classifier separates wire-service writing from fringe-site writing. It does not verify facts and would not generalise to other sources.
+
+The single hold-out run in `results/metrics_report.txt` uses only 40 test articles, so its accuracy has a very wide interval; prefer the cross-validated figures above.
 
 Confusion matrix saved to `results/confusion_matrix.png` after evaluation.
 
